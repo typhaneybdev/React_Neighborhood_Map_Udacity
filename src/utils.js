@@ -1,4 +1,3 @@
-
 //https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be Ryan Waite Walk through 10/16
 //Ryan Waite wrote and recommended to use the following code to load google map,
 //link to repo https://github.com/ryanwaite28/script-store/blob/master/js/react_resolve_google_maps.js
@@ -22,10 +21,15 @@ export function load_google_maps() {
   });
 }
 
+//load foursquare API
 export function load_places() {
   let city = "Sedona, AZ";
   let query = "trail";
   var apiURL =
-  'https://api.foursquare.com/v2/venues/search?client_id=TZXA1I2LTTCSDSCHY0K31HPIBLDZ3GJCFZ1GIX2HWWHYL3SI&client_secret=LDTK5GXKLVQT4AGOKPIRJIRDTQGRFNYWJBKTMGW0ZYTQQ4UP&v=20180323&limit=50&near=' + city + '&query=' + query + '';
+    "https://api.foursquare.com/v2/venues/search?client_id=TZXA1I2LTTCSDSCHY0K31HPIBLDZ3GJCFZ1GIX2HWWHYL3SI&client_secret=LDTK5GXKLVQT4AGOKPIRJIRDTQGRFNYWJBKTMGW0ZYTQQ4UP&v=20180323&limit=50&near=" +
+    city +
+    "&query=" +
+    query +
+    "";
   return fetch(apiURL).then(resp => resp.json());
 }

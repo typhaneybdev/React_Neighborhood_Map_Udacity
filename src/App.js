@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-
 import { load_google_maps, load_places } from "./utils";
-
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+//https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be ryan waite 10/16
 //https://www.youtube.com/watch?v=Uw5Ij56RhME eman mohammed abd elsalam Zaghlul Streamed live on Jul 28, 2018
 //https://developers.google.com/maps/documentation/javascript/tutorial
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -12,11 +14,12 @@ class App extends Component {
       query: ""
     };
   }
-
+  //load API data from methods in utils file
   componentDidMount() {
     let googleMapsPromise = load_google_maps();
     let placesPromise = load_places();
 
+    //load google map and foursquare venues
     Promise.all([googleMapsPromise, placesPromise]).then(values => {
       let google = values[0];
       this.venues = values[1].response.venues;
@@ -31,6 +34,7 @@ class App extends Component {
         center: { lat: this.venues[0].location.lat, lng: this.venues[0].location.lng }
       });
 
+      //loop through venues to create map markers with properties to allow filtering 
       this.venues.forEach(venue => {
         let marker = new google.maps.Marker({
           position: { lat: venue.location.lat, lng: venue.location.lng },
@@ -40,7 +44,9 @@ class App extends Component {
           name: venue.name,
           animation: google.maps.Animation.DROP
         });
+      
 
+        //set marker animation 
         marker.addListener("click", () => {
           if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -62,10 +68,17 @@ class App extends Component {
       });
 
       this.setState({ filteredVenues: this.venues });
-    });
-  }
+    })
 
-  filterVenues(query) {
+    //alerts user if data is not retrieved from API
+    .catch(error => {
+      console.log(error);
+      alert('Error loading page...');
+    })
+
+  }
+  // filter venues based on user input, add and remove list items and markers based on query
+  filterVenues = (query) => {
     let f = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
     this.markers.forEach(marker => {
       marker.name.toLowerCase().includes(query.toLowerCase()) === true
@@ -75,12 +88,21 @@ class App extends Component {
     this.setState({ filteredVenues: f, query });
   }
 
+  //set info window and marker animation 
   listItemClick = (venue) => {
     let marker = this.markers.filter(m => m.id === venue.id)[0];
     this.infowindow.setContent(marker.name);
     this.map.setCenter(marker.position);
     this.infowindow.open(this.map, marker);
     this.map.panBy(0, -125);
+    if (marker.getAnimation() !== null) {
+      marker.setAnimation(null);
+    } else {
+      marker.setAnimation(this.google.maps.Animation.BOUNCE);
+    }
+    setTimeout(() => {
+      marker.setAnimation(null);
+    }, 1500);
     
   }
 
@@ -88,23 +110,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div id="map" />
-        <div id="sidebar">
-          <input placeholder="Filter Locations"
-            value={this.state.query}
-            onChange={e => {
-              this.filterVenues(e.target.value);
-            }}
-          />
-          <br/>
-          <br/>
-          {
-            this.state.filteredVenues && this.state.filteredVenues.length > 0 && this.state.filteredVenues.map((venue, index) => (
-            <div key={index} className="venue-item" onClick={() => { this.listItemClick(venue) }}>
-            {venue.name}</div>
-            ))
-          }
+        <div>
+          <Header />
         </div>
+        <div id="map" role="application" aria-label="map">
+        </div>
+        <Sidebar 
+        filterVenues={this.filterVenues} 
+        filteredVenues={this.state.filteredVenues} 
+        listItemClick={this.listItemClick}/>
       </div>
     );
   }

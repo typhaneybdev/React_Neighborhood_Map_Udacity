@@ -1,3 +1,17 @@
+
+
+###NEIGHBORHOOD MAP PROJECT - SEDONA AZ HIKING TRAILS 
+
+The following project is a responsive accessible single page web application using React; along with third party API's from google maps and foursquare. The application features a map with markers and a searchable list of hiking trails located in Sedona, AZ indicating the trail name. 
+
+React, JSX, JavaScript, HTML5, CSS, A11y, Google Maps API, Foursquare API were used to complete this application.
+
+##RUN LOCALLY
+
+To view this project locally click > clone or download > make sure to install all project dependencies with npm install and start the development server with npm start, you must have node.js installed in order install the project dependencies. Once complete the application will open in your default browser at localhost:3000
+
+## TL;DR Project information provide from UDACITY
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

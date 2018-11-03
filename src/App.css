@@ -17,13 +17,38 @@ body {
   width: 325px;
   max-width: 100%;
   max-height: 100vh;
-  background-color: #c1e1c2;
+  background-color: #e6f1e6fa;
   z-index: 1000;
   overflow-y: scroll;
+  margin-top: 60px;
 }
 
 .venue-item {
-  padding: 5px;
+  padding: 8px;
   margin-bottom: 5px;
-  border: 1px solid grey;
+  margin-left: 3px;
+  margin-right: 3px;
+  border: 2px solid #739599;
+  
+}
+
+Header {
+  background-color: black;
+  height: 60px;
+  margin: 0;
+}
+
+.headerText {
+  margin: 0;
+  z-index: 1;
+  color: white;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.venueInput {
+  width: 300px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
