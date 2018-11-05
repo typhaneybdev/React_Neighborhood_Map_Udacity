@@ -4,12 +4,11 @@ import React, { Component } from "react";
 //https://developers.google.com/maps/documentation/javascript/tutorial
 
 class Sidebar extends Component {
-  componentDidMount() {}
  //filterVenues method is called in app js when user inputs data, side bar venues and markers are filtered concurrently
   render() {
     return (
       <div id="sidebar">
-        <input 
+        <input type="text" aria-label="Enter search text"
           className="venueInput"
           placeholder="Filter Locations"
           value={this.props.query}
@@ -22,10 +21,13 @@ class Sidebar extends Component {
         {this.props.filteredVenues &&
           this.props.filteredVenues.length > 0 &&
           this.props.filteredVenues.map((venue, index) => (
-            <div
+            <div role="button" aria-label="{venue.name}"
               key={index}
-              className="venue-item" tabIndex={0}
+              className="venue-item" tabIndex={0} 
               onClick={() => {
+                this.props.listItemClick(venue);
+              }}
+              onKeyDown={() => {
                 this.props.listItemClick(venue);
               }}
             >

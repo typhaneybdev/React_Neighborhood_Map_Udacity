@@ -52,3 +52,51 @@ Header {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.fas, .fa {
+  color:white;
+  border-color: none;
+}
+
+.topNav {
+  display: flex;
+}
+
+.headText, .burger {
+  display: flex;
+  width: 50%;
+  border-color: black;
+}
+
+.toggle, .fa {
+  font-size: 30px;
+  margin-left: 90%;
+}
+.toggle {
+  background-color: black;
+  border: none;
+}
+
+@media (max-width: 475px) {
+  .toggle, .fa {
+    margin-left: 70%;
+  }
+  .headerText{
+    font-size: 20px;
+  }
+  #mobileContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+  
+  }
+  #map {
+    display: flex;
+    flex-direction: column;
+  }
+}

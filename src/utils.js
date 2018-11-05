@@ -17,9 +17,18 @@ export function load_google_maps() {
     const API_KEY = "AIzaSyDzN0ZaZRCzBs1btZwIGAOeutQ2o9d94bw";
     script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${API_KEY}&callback=resolveGoogleMapsPromise`;
     script.async = true;
+    //alerts user if data is not retrieved from API https://developers.google.com/maps/documentation/javascript/events#auth-errors
+    window.gm_authFailure = () =>  {
+      alert('Error loading page...');
+      
+       }
     document.body.appendChild(script);
+
   });
+ 
 }
+
+
 
 //load foursquare API
 export function load_places() {

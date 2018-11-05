@@ -113,12 +113,14 @@ class App extends Component {
         <div>
           <Header />
         </div>
+        <div id="mobileContainer">
         <div id="map" role="application" aria-label="map">
         </div>
         <Sidebar 
         filterVenues={this.filterVenues} 
         filteredVenues={this.state.filteredVenues} 
         listItemClick={this.listItemClick}/>
+        </div>
       </div>
     );
   }
