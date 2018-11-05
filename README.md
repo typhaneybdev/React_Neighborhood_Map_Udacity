@@ -6,6 +6,10 @@ The following project is a responsive accessible single page web application usi
 
 React, JSX, JavaScript, HTML5, CSS, A11y, Google Maps API, Foursquare API were used to complete this application.
 
+## TODO: 
+* Add function to burger menu to toggle sidebar for mobile use
+* Add additional data to info window 
+
 ## RUN LOCALLY
 
 To view this project locally click > clone or download > make sure to install all project dependencies with npm install and start the development server with npm start, you must have node.js installed in order install the project dependencies. Once complete the application will open in your default browser at localhost:3000
